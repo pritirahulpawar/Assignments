@@ -1,77 +1,55 @@
-// Syntax to store Data: Declaration variable = data;
+// Syntax to store data in Typescript :  Declaration variable : DataType = Data;
 
-// Data types in javascript are divided into two different categories.
-// 1. Primitive Data Types (immutable data types)
-// 1. Non - Primitive Data Types (mutable data types)
+// Data Types in typescipt are divided into two categories.
 
-//immutable - we cannot change original value until we cannot reassigned
-let a = 10; //stroring number
-a+10; //adding 10
-console.log(a);
-
-//mutable
-// let obj = {
-//     name : "Priti",
-//     id : 1235,
-
-// }
-// obj.name = "Prital";
-// console.log(obj);
-
-
-let b=[1,2,3,4];
-b.push(4);
-console.log(b);
+// 1. Primitive data types
+// 2. Non-primitive data types
 
 /****************************************************************/
-/******************Priitmitive Data Types************************/
+/******************Primitive Data Types************************/
 /****************************************************************/
 
 //1. Number ==> The data type can be used to store numbers with decimals or without decimals
-let num1 = 10;
-let num2 = 10.55;
+let num1 : number = 10;
+let num2 : number = 10.55;
 console.log(num1);
 console.log(num2);
-console.log(typeof num1);
-console.log(typeof num2);
 
 //2. String ==> The data tyoe can be used to store text value. we can store single quote, double quote or backticks.
-let str1 = "she told me, 'Good morning'";
-let str2 = 'I replied back with "Good Afternoon"';
+let str1 : string = "she told me, 'Good morning'";
+let str2 : string = 'I replied back with "Good Afternoon"';
 console.log(str1);
-console.log(typeof str1);
 console.log(str2);
-console.log(typeof str2);
-
-let empName = "Sakshi";
-let location = "MH";
-console.log("New employee name is "+empName+ " and location is "+ location);
-console.log(`New employee name is ${empName} and location is ${location}`);
 
 //3. boolean ==> The can be used to store result of condition in the form true or false
-let x = 10;
-let y = 20;
-let result = x>y;
+let x : number = 10;
+let y : number = 20;
+let result : boolean = x > y;
 console.log(result);
-console.log(typeof result);
 
 //4. undefined ==> undefined represents a variable that has been declared but not assigned any value
-let age;
+let age : undefined;
 console.log(age);
 
 //5. null ==> null represents a variable that has been declared and intentionally assigned empty value
-let salary = 10000;
-salary = null;
+let salary : null = null;
 console.log(salary);
 
-//6.Symbol => Symbol represnts a unique hidden identifier inside an object
-let countryOfOrigin = Symbol();
-let productInfo = {
-    productName : "Iphone 16",
-    price : 100000,
-    [countryOfOrigin] : "china"
-}
-console.log(productInfo);
+//6. union => Union represents more than one data type within the variables
+let empAddress : string | number | boolean = "Pune";
+console.log(empAddress);
+empAddress = "Maharastra";
+console.log(empAddress);
+empAddress = 414103;
+console.log(empAddress);
+
+//7. any => any represents any data type is allowed within a variable.
+let data: any ="Hello world";
+console.log(data);
+data =100;
+console.log(data);
+data = true;
+console.log(data);
 
 /**********************************************************************/
 /****************** Non Priitmitive Data Types ************************/
@@ -79,7 +57,18 @@ console.log(productInfo);
 
 // 1. Object => Object data type represents collection of key value pairs
 
-let person= { 
+interface personInfo{ 
+    name : string,
+    age : number,
+    visaStatus : boolean,
+    address : {
+        city : string,
+        state : string,
+        zip : number
+    }
+}
+
+let person : personInfo = { 
     name : "Priti",
     age : 27,
     visaStatus : true,
@@ -89,44 +78,46 @@ let person= {
         zip : 414103
     }
 }
-
-//Print the name of the person
-console.log(person.name);  //method1
-console.log(person["name"]); //method2
-
-//Print city of the person
-console.log(person.address.city);
-console.log(person.address["city"]);
-
-// Print complete person details
 console.log(person);
 
 // 2. Array => Array represnts list of values
 
-let fruits=["apple", "banana", "Mango"];
+let fruits: string[] = ["apple", "banana", "Mango","orange"];
+let prices: number[] = [300,60,28,700];
+let fruitsAndPrices : (string | number)[] = ["apple",300, "banana",60, "Mango",28,"orange"];
 console.log(fruits[1]);
 
+// 3. tuples => tuple represents list of values in specific order
+
+// Array:
+//store emp name , emp phone number, emp visa status within the array
+let empDetails : (string | number | string | boolean )[] = ["priti",true , 5677896789,"priti"];
+console.log(empDetails);
+
+//tuples
+let empInfo : [string,number,boolean] = ["priti", 1234567789,true];
+console.log(empInfo);
+
 // 3. function => A function represents block of code or collection of statements to complete specific task
-function launchBrowserAndLogin(browser_name, username, password){
+function launchBrowserAndLogin(browser_name:string, username:string, password:string):void{
     console.log(`Launch the ${browser_name} browser`);
     console.log("Enter the URL : https://www.icici.com/");
     console.log(`Enter the username as '${username}' and password as '${password}'`);
     console.log("Click on login button");
 }
 
-function logoutAndCloseBrowser(){
+function logoutAndCloseBrowser():void{
     console.log("Logout from the application");
     console.log("Close the browser");
 }
 
-function getAccountBalance(){
+function getAccountBalance():number{
     console.log("Navigate to account balance page");
     let accountBalance = 100000;
     return accountBalance;
 }
-
 // 4. set => A set represents a collection of unique values of any data type
-let empIDS = new Set();
+let empIDS : Set<number>= new Set(); // creating the empty set will store data
 empIDS.add(121);
 empIDS.add(122);
 empIDS.add(123);
@@ -137,7 +128,7 @@ console.log(empIDS);
 
 // 5. Map => A map can store multiple values in the form of key-value.It will allow duplicate values but not duplicate keys
 
-let empMap = new Map();
+let empMap : Map<string,string|number>= new Map();
 empMap.set("empID",121);
 empMap.set("empName","Priti");
 empMap.set("empAge",27);
