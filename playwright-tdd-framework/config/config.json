@@ -1,0 +1,25 @@
+
+{
+    "app":{
+         "url" : "https://accounts.creatio.com/login/alm",
+         "title": "Log in | Creatio",
+         "username" : "priti.rahul.pawar@gmail.com",
+         "password" : "Priti@4912"
+    },
+    "api": {
+        "base_url" : "https://api.github.com",
+        "owner": "PritiParande",
+        "token": "Bearer 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"
+    },
+    "db":{
+        "host" : "localhost",
+        "port" : 5432,
+        "username" : "postgre",
+        "password" : "postgre",
+        "database" : "testdb"
+    },
+    "ollama" : {
+        "url" : "https://localhost:11434",
+        "model" : "ollama/ollama-2-7b-chat"
+    }
+}
